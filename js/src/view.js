@@ -1,11 +1,11 @@
 export default class View {
 	// Цвета фигур
 	static colors = {
-		'1': ['#FFFFCC', '#FFFF99'], // O done
-		'2': ['#CCFFFF', '#99CCFF'], // I done
+		'1': ['#FFFFCC', '#FFFF99'], // O
+		'2': ['#CCFFFF', '#99CCFF'], // I
 		'3': ['#CCFFCC', '#CCFF99'], // S
 		'4': ['#FFCCCC', '#FF9999'], // Z
-		'5': ['#B7D6D5', '#9999FF'], // L
+		'5': ['#CCCCFF', '#9999FF'], // L
 		'6': ['#FFFFCC', '#FFCC99'], // J
 		'7': ['#FFCCFF', '#CC99FF'] // T
 	}
@@ -108,10 +108,11 @@ export default class View {
 		const controlMenuImg = new Image();
 		const controlY = this.height - this.verticalMargin - this.backgroundBorder - 244;
 
-		controlMenuImg.src = '../img/control.png';
-		controlMenuImg.onload = _ => {
+		controlMenuImg.addEventListener('load', _ => {
 			this.ctxBackground.drawImage(controlMenuImg, this.panelX, controlY, 342, 244);
-		};
+		});
+
+		controlMenuImg.src = '../../img/control.png';
 	}
 
 	// Очистка игрового экрана
@@ -221,8 +222,8 @@ export default class View {
 	}
 
 	textParam(color, size, name, serif, align, baseLine) {
+		this.ctxGame.font = `${size} ${name}, ${serif}`;
 		this.ctxGame.fillStyle = color;
-		this.ctxGame.font = `${size} "${name}", ${serif}`;
 		this.ctxGame.textAlign = align;
 		this.ctxGame.textBaseline = baseLine;
 	}
